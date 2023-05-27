@@ -22,7 +22,7 @@ include_directories(${OpenCV_INCLUDE_DIRS})
 
 set(LIBS ${OpenCV_LIBS})
 
-add_executable(edge-detection main.cpp edge.cpp edge.h util.cpp util.h)
+add_executable(edge-detection main.cpp edge.cpp edge.h)
 target_link_libraries(edge-detection ${LIBS})
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})

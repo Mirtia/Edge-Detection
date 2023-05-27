@@ -1,4 +1,4 @@
-#include "opencv2/opencv.hpp"
+#include "edge.h"
 #include <stdio.h>
 
 int main(int argc, const char **argv)
@@ -26,7 +26,7 @@ int main(int argc, const char **argv)
         return -1;
     }
 
-    cv::Mat image = cv::imread(filename);
+    cv::Mat image = cv::imread(filename, cv::IMREAD_GRAYSCALE);
 
     if (image.empty())
     {
@@ -34,8 +34,10 @@ int main(int argc, const char **argv)
         return -1;
     }
 
+    cv::namedWindow("Image", cv::WINDOW_NORMAL);
+    cv::resizeWindow("Image", DEFAULT_WIDTH, DEFAULT_HEIGHT);
     cv::imshow("Image", image);
-    cv::waitKey(0);
 
+    cv::waitKey(0);
     return 0;
 }
