@@ -1,8 +1,6 @@
 #ifndef EDGE_H
 #define EDGE_H
 #include <opencv2/opencv.hpp>
-#define DEFAULT_WIDTH 1920
-#define DEFAULT_HEIGHT 1060
 
 class EdgeFilter
 {
@@ -13,7 +11,7 @@ public:
     {}
     
     cv::Mat edgeCanny(int threshold_1, int threshold_2, int sigma_X);
-    cv::Mat edgeLaplacian(int sigma_X, int ddepth,  int scale = 1, int delta = 0);
+    cv::Mat edgeLaplacian(int sigma_X, int ddepth,  int scale, int delta);
     cv::Mat edgeGaussianDiff(int sigma_X, double factor, int gamma);
     cv::Mat edgeScharrSobel(int ddepth, int ksize, int scale, int delta, double beta, double gamma);
 
@@ -23,4 +21,4 @@ private:
 
 };
 
-#endif /*EDGE_H*/
+#endif  /*EDGE_H*/

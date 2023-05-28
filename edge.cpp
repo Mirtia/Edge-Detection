@@ -10,7 +10,7 @@ cv::Mat EdgeFilter::edgeCanny(int threshold_1, int threshold_2, int sigma_X)
     return edges;
 }
 
-cv::Mat EdgeFilter::edgeLaplacian(int sigma_X, int ddepth, int scale = 1, int delta = 0)
+cv::Mat EdgeFilter::edgeLaplacian(int sigma_X, int ddepth, int scale, int delta)
 {
     cv::Mat blurredImage;
     cv::Mat edges, absEdges;

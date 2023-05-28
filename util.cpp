@@ -1,20 +1,21 @@
 #include "util.h"
 
-void plotImages(cv::Mat original_image, std::vector<cv::Mat> images)
+void plotImages(std::vector<cv::Mat> images, const char* title)
 {
-    for (auto &&image : images)
+    // For this test, it is assumed that all images have the same size
+    size_t numImages = images.size();
+    int side = static_cast<int>(std::ceil((std::sqrt(numImages))));
+    int imageWidth = images.back().cols;
+    int imageHeight = images.back().rows;
+    // Grayscale images so CV_8UC1 (Unsigned 8 Channel 1)
+    cv::Mat canvas(side * imageHeight, side * imageWidth, CV_8UC1, cv::Scalar(255, 255, 255));
+    for (size_t i = 0; i < numImages; i++)
     {
-        if (original_image.size() != image.size())
-        {
-            std::cerr << "Image size different from the original image." << std::endl;
-            // TODO: Handle
-            return;
-        }
+        // ROI stands for Region of Interest
+        cv::Rect roi(i % side * imageWidth, static_cast<int>(i / side) * imageHeight, imageWidth, imageHeight);
+        images[i].copyTo(canvas(roi));
     }
-
-    int side = static_cast<int>(std::sqrt(images.size()));
-    int width = side * images.back().size().width;
-    int height = side * images.back().size().height;
-    cv::Mat canvas(height, width, CV_8UC3, cv::Scalar(255, 255, 255));
-    // TODO: Organize grid
+    cv::namedWindow(title, cv::WINDOW_NORMAL);
+    cv::resizeWindow(title, DEFAULT_WIDTH, DEFAULT_HEIGHT);
+    cv::imshow(title, canvas);
 }
