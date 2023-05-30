@@ -41,18 +41,18 @@ int main(int argc, const char **argv)
 
     // These parameters are random, for real
     // TODO: Understand what the correct parameters are for both blurring and filters
-    cv::Mat cannyImage = edgeFilter.edgeCanny(0, 100, 3);
-    cv::Mat laplaceImage = edgeFilter.edgeLaplacian(0, 3, 1, 0);
-    cv::Mat OGDImage = edgeFilter.edgeGaussianDiff(0, 0.5, 1);
-    cv::Mat sobelImage = edgeFilter.edgeScharrSobel(3, 1, 1, 1, 1, 0);
-    // Create a vector of images that contains the results of the edge filters
-    // and the original image to plot in a single window
-    images.push_back(image);
-    images.push_back(cannyImage);
-    images.push_back(laplaceImage);
-    images.push_back(OGDImage);
-    images.push_back(sobelImage);
-    plotImages(images, "Edge Detection Comparison");
+    // cv::Mat cannyImage = edgeFilter.edgeCanny(0, 100, 3);
+    // cv::Mat laplaceImage = edgeFilter.edgeLaplacian(0, 3, 1, 0);
+    // cv::Mat OGDImage = edgeFilter.edgeGaussianDiff(0, 0.5, 1);
+    // cv::Mat sobelImage = edgeFilter.edgeScharrSobel(3, 1, 1, 1, 1, 0);
+    // // Create a vector of images that contains the results of the edge filters
+    // // and the original image to plot in a single window
+    // images.push_back(image);
+    // images.push_back(cannyImage);
+    // images.push_back(laplaceImage);
+    // images.push_back(OGDImage);
+    // images.push_back(sobelImage);
+    // plotImages(images, "Edge Detection Comparison");
     cv::waitKey(0);
     return 0;
 }
