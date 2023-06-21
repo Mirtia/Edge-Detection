@@ -50,9 +50,25 @@ void cv::blur(InputArray src,
 Steps of Canny algorithm (always check the [documentation](https://docs.opencv.org/3.4/da/d5c/tutorial_canny_detector.html)):
 
 - Apply blurring (in our case Gaussian blur)
-- ...
+- Find the intensity gradients (analogous to Sobel)
+- Non-maximum suppresion
+- Hysterisis (threshold parameters)
+
+```c++
+void cv::Canny(InputArray image,
+    OutputArray edges,
+    double threshold1,
+    double threshold2,
+    int apertureSize = 3,
+    bool L2gradient = false 
+)
+```
 
 ### Sobel & Scharr Filters
+
+Sobel operator uses 3x3 kernels which are convolved with the original image to calculate approximations of the derivatives, one of the horizontal changes and one for vertical.
+
+While reducing artifacts associated with a pure central differences operator, Sobel does not exhibit a good rotational symmetry (about 1° of error). Scharr looked into optimizing this property by producing kernels optimized for specific given numeric precision (integer, float…).
 
 ### Difference of Gaussian Kernels
 
@@ -61,3 +77,5 @@ The difference of Gaussians (DoG) involves the subtraction of one Gaussian blurr
 We need to pass a **factor** < 1 to create a narrower variance for the second filter.
 
 ### Laplacian Edge Detection
+
+The Laplacian operator functions as a derivative operator, emphasizing gray level discontinuities within an image while reducing the emphasis on regions with gradually changing gray levels. As a result, this operation generates images with gray-toned edge lines and other disruptions set against a dark background. Consequently, the image exhibits both inward and outward edges. We can apply Negative or Positive Laplacian operator.

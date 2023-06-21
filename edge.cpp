@@ -28,6 +28,7 @@ cv::Mat EdgeFilter::edgeGaussianDiff(int sigma_X, double factor, int gamma)
     cv::Mat gaussian_1, gaussian_2;
 
     cv::GaussianBlur(this->inputArray, gaussian_1, cv::Size(this->kernelSize, this->kernelSize), sigma_X);
+    // factor should be in the range of (0, 1)
     cv::GaussianBlur(this->inputArray, gaussian_2, cv::Size(this->kernelSize, this->kernelSize), sigma_X * factor);
     cv::subtract(gaussian_1, gamma * gaussian_2, edges);
 
